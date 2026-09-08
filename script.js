@@ -3,9 +3,6 @@
  * Gestione di gallerie fotografiche, menu mobile, animazioni e modali per La Scarana
  */
 
-// =========================================
-// 1. GALLERIE FOTOGRAFICHE (CAROUSEL AUTOMATICO)
-// =========================================
 let galleryIndices = {};
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -15,14 +12,32 @@ document.addEventListener("DOMContentLoaded", function() {
     carousels.forEach(function(carousel) {
         let id = carousel.id;
         if (id) {
-            galleryIndices[id] = 1; 
-            showSlides(id, 1);
+            let slides = carousel.getElementsByClassName("carousel-slide");
+            
+            // Controlla se ci sono più di 1 elemento (foto o video)
+            if (slides.length > 1) {
+                carousel.classList.add("has-multiple"); // Attiva le frecce tramite CSS
+                galleryIndices[id] = 1; 
+                showSlides(id, 1);
+            } else {
+                carousel.classList.remove("has-multiple"); // Rimuove/nasconde le frecce se c'è 1 solo elemento
+                if (slides.length === 1) {
+                    slides[0].style.display = "block"; // Assicura che l'unica foto/video sia visibile
+                }
+            }
         }
     });
 });
 
 // Collegamento globale (window.) per far funzionare gli onclick nell'HTML
 window.changeSlide = function(galleryId, n) {
+    const galleryContainer = document.getElementById(galleryId);
+    if (!galleryContainer) return;
+    
+    let slides = galleryContainer.getElementsByClassName("carousel-slide");
+    // Se c'è 1 solo elemento o nessuno, non fa nulla al click
+    if (slides.length <= 1) return;
+
     if (!galleryIndices[galleryId]) {
         galleryIndices[galleryId] = 1;
     }
