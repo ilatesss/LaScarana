@@ -1,8 +1,3 @@
-/**
- * script.js
- * Gestione di gallerie fotografiche, menu mobile, animazioni e modali per La Scarana
- */
-
 let galleryIndices = {};
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -19,6 +14,37 @@ document.addEventListener("DOMContentLoaded", function() {
                 carousel.classList.add("has-multiple"); // Attiva le frecce tramite CSS
                 galleryIndices[id] = 1; 
                 showSlides(id, 1);
+
+                // =========================================
+                // GESTIONE TOUCH (SWIPE) PER MOBILE
+                // =========================================
+                let startX = 0;
+                let endX = 0;
+
+                // Registra dove il dito tocca lo schermo
+                carousel.addEventListener('touchstart', function(e) {
+                    startX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                // Registra dove il dito si stacca dallo schermo
+                carousel.addEventListener('touchend', function(e) {
+                    endX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+
+                function handleSwipe() {
+                    let swipeThreshold = 50; // Distanza minima per considerare il gesto uno swipe
+                    
+                    if (endX < startX - swipeThreshold) {
+                        // Swipe verso sinistra (Avanti)
+                        window.changeSlide(id, 1);
+                    }
+                    if (endX > startX + swipeThreshold) {
+                        // Swipe verso destra (Indietro)
+                        window.changeSlide(id, -1);
+                    }
+                }
+
             } else {
                 carousel.classList.remove("has-multiple"); // Rimuove/nasconde le frecce se c'è 1 solo elemento
                 if (slides.length === 1) {
