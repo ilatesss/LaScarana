@@ -1262,13 +1262,18 @@ footer .copyright {
         flex: none !important;
         width: 100% !important;
     }
+    
     .bottega-section.split-layout .image-box {
         height: 300px !important;
     }
-    .split-layout h3 { font-size: 1.6rem; }
-    h4.bottega-sub {
-        font-size: 1.2rem;
+    
+    /* Regola specifica per la pagina Eventi: foto molto più compatte su mobile */
+    .event-item.split-layout .image-box {
+        height: 200px !important; 
     }
+    
+    .split-layout h3 { font-size: 1.6rem; }
+    h4.bottega-sub { font-size: 1.2rem; }
 
     /* --- Griglie e card --- */
     .valori-grid { grid-template-columns: 1fr; gap: 15px; }
@@ -1335,32 +1340,32 @@ footer .copyright {
 
     /* --- Footer compatto --- */
     footer {
-        padding: 2.5rem 1rem 1.5rem 1rem !important;
-        margin-top: 3rem !important;
+        padding: 1.5rem 1rem 1rem 1rem !important;
+        margin-top: 2rem !important;
     }
     .footer-content {
         flex-direction: column !important;
         text-align: center !important;
-        gap: 25px !important;
+        gap: 15px !important;
         padding: 0 10px !important;
     }
     .footer-col { min-width: 100% !important; }
     .footer-col h5 {
-        font-size: 1.05rem !important;
-        margin-bottom: 10px !important;
-        padding-bottom: 6px !important;
+        font-size: 1rem !important;
+        margin-bottom: 8px !important;
+        padding-bottom: 4px !important;
         display: inline-block;
         border-bottom: 2px solid rgba(255, 255, 255, 0.3);
     }
-    .footer-col p { font-size: 0.9rem !important; line-height: 1.6; }
-    .footer-col h7 { font-size: 0.85rem !important; margin-bottom: 5px; }
+    .footer-col p { font-size: 0.85rem !important; line-height: 1.5; }
+    .footer-col h7 { font-size: 0.8rem !important; margin-bottom: 5px; }
 
     .footer-col .social-links {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 4px;
         align-items: center;
-        margin-top: 10px;
+        margin-top: 5px;
     }
     .footer-col .social-links a {
         display: inline-block;
@@ -1369,9 +1374,9 @@ footer .copyright {
     }
 
     footer .copyright {
-        margin-top: 2rem !important;
+        margin-top: 1.5rem !important;
         padding-top: 1rem !important;
-        font-size: 0.75rem !important;
+        font-size: 0.7rem !important;
         opacity: 0.75;
     }
     .footer-logo img { max-width: 70px !important; }
